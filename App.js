@@ -10,8 +10,15 @@ export default function App() {
         }}
         style={{ height: 30, width: 30 }}
       />
-      <Text style={styles.title}>Bitcoin</Text>
-      <StatusBar style="light" />
+      <View>
+        <Text style={styles.title}>Bitcoin</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Text style={styles.title}>1</Text>
+          <Text style={styles.title}>BTC</Text>
+          <Text style={styles.title}>0.63%</Text>
+        </View>
+        <StatusBar style="light" />
+      </View>
     </View>
   );
 }
@@ -23,7 +30,11 @@ const styles = StyleSheet.create({
     paddingTop: 50,
   },
   title: {
-    color: "white",
+    color: "#FFF0F5",
     fontSize: 16,
+    fontWeight: "800",
+  },
+  text: {
+    color: "white",
   },
 });
