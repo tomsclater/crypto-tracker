@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Image, SafeAreaView } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function App() {
   return (
@@ -21,7 +22,13 @@ export default function App() {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.text}>1</Text>
             <Text style={styles.text}>BTC</Text>
-            <Text style={styles.text}>+0.20% today</Text>
+            <AntDesign
+              style={styles.green}
+              name="caretup"
+              size={14}
+              color="green"
+            />
+            <Text style={styles.text}>0.20% today</Text>
           </View>
         </View>
         <View style={{ marginLeft: "auto" }}>
@@ -55,5 +62,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#282828",
     padding: 15,
     justifyContent: "space-between",
+  },
+  green: {
+    marginRight: 5,
   },
 });
