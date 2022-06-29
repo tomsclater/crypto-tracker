@@ -21,11 +21,15 @@ export default function App() {
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.text}>1</Text>
             <Text style={styles.text}>BTC</Text>
-            <Text style={styles.text}>0.63%</Text>
+            <Text style={styles.text}>+0.20% today</Text>
           </View>
         </View>
-        <StatusBar style="light" />
+        <View style={{ marginLeft: "auto" }}>
+          <Text style={styles.title}>$20,290</Text>
+          <Text style={styles.text}>MCap 405.02B</Text>
+        </View>
       </View>
+      <StatusBar style="light" />
     </View>
   );
 }
@@ -50,5 +54,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "#282828",
     padding: 15,
+    justifyContent: "space-between",
   },
 });
