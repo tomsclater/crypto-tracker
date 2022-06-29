@@ -18,7 +18,7 @@ const CoinItem = ({ marketCoin }) => {
     <View style={styles.coinContainer}>
       <Image
         source={{
-          uri: "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+          uri: image,
         }}
         style={{
           height: 30,
@@ -28,23 +28,25 @@ const CoinItem = ({ marketCoin }) => {
         }}
       />
       <View>
-        <Text style={styles.title}>Bitcoin</Text>
+        <Text style={styles.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.rankContainer}>
-            <Text style={styles.rank}>1</Text>
+            <Text style={styles.rank}>{market_cap_rank}</Text>
           </View>
-          <Text style={styles.text}>BTC</Text>
+          <Text style={styles.text}>{symbol.toUpperCase()}</Text>
           <AntDesign
             style={styles.green}
             name="caretup"
             size={14}
             color="green"
           />
-          <Text style={styles.text}>0.20% today</Text>
+          <Text style={styles.text}>
+            {price_change_percentage_24h.toFixed(2)}% today
+          </Text>
         </View>
       </View>
       <View style={{ marginLeft: "auto" }}>
-        <Text style={styles.title}>$20,290</Text>
+        <Text style={styles.title}>{current_price}</Text>
         <Text style={styles.text}>MCap 405.02B</Text>
       </View>
     </View>
