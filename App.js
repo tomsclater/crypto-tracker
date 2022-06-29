@@ -20,7 +20,9 @@ export default function App() {
         <View>
           <Text style={styles.title}>Bitcoin</Text>
           <View style={{ flexDirection: "row" }}>
-            <Text style={styles.text}>1</Text>
+            <View style={styles.rankContainer}>
+              <Text style={styles.rank}>1</Text>
+            </View>
             <Text style={styles.text}>BTC</Text>
             <AntDesign
               style={styles.green}
@@ -51,6 +53,7 @@ const styles = StyleSheet.create({
     color: "#FFF0F5",
     fontSize: 16,
     fontWeight: "800",
+    marginBottom: 3,
   },
   text: {
     color: "#FFF0F5",
@@ -64,6 +67,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   green: {
+    marginRight: 5,
+    alignSelf: "center",
+  },
+  rank: {
+    fontWeight: "bold",
+    color: "white",
+  },
+  rankContainer: {
+    backgroundColor: "#585858",
+    paddingHorizontal: 5,
+    borderRadius: 5,
     marginRight: 5,
   },
 });
