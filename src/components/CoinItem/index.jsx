@@ -55,7 +55,7 @@ const CoinItem = ({ marketCoin }) => {
           <Text style={styles.text}>{symbol.toUpperCase()}</Text>
           <AntDesign
             style={styles.green}
-            name="caretup"
+            name={price_change_percentage_24h < 0 ? "caretdown" : "caretup"}
             size={14}
             color={percentageColor}
           />
