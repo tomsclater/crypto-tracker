@@ -6,7 +6,8 @@ import CoinItem from "./src/components/CoinItem";
 export default function App() {
   return (
     <View style={styles.container}>
-      <CoinItem />
+      <CoinItem name={"Thomas"} />
+      <CoinItem name={"Mariana"} />
       <StatusBar style="light" />
     </View>
   );
