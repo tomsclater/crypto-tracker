@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
+import styles from "./styles";
 
 const CoinDetailedScreen = () => {
   const {
@@ -18,18 +19,12 @@ const CoinDetailedScreen = () => {
         symbol={symbol}
         marketCapRank={market_cap_rank}
       />
-      <View>
-        <Text style={{ color: "white", fontSize: 15 }}>{name}</Text>
-        <Text
-          style={{
-            color: "white",
-            fontSize: 30,
-            fontWeight: "600",
-            letterSpacing: 1,
-          }}
-        >
-          ${current_price.usd}
-        </Text>
+      <View style={styles.priceContainer}>
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.currentPrice}>${current_price.usd}</Text>
+        </View>
+        <Text style={{ color: "white" }}>1.24</Text>
       </View>
     </View>
   );
