@@ -7,8 +7,8 @@ import HomeScreen from "./src/screens/HomeScreen";
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <HomeScreen /> */}
       <CoinDetailedScreen />
+      {/* <HomeScreen /> */}
       <StatusBar style="light" />
     </View>
   );
