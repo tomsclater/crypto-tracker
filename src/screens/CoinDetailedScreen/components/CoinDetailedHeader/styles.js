@@ -17,6 +17,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     fontSize: 17,
   },
+  rankContainer: {
+    backgroundColor: "#585858",
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 5,
+  },
 });
 
 export default styles;
