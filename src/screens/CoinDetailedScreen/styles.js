@@ -11,6 +11,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  tickerTitle: {
+    color: "white",
+    fontWeight: "bold",
+    marginHorizontal: 5,
+    fontSize: 17,
+  },
 });
 
 export default styles;
