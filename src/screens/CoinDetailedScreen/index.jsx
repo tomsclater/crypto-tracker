@@ -3,14 +3,22 @@ import { View, Text } from "react-native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
 import styles from "./styles";
+import { AntDesign } from "@expo/vector-icons";
 
 const CoinDetailedScreen = () => {
   const {
     image: { small },
     name,
     symbol,
-    market_data: { market_cap_rank, current_price },
+    market_data: {
+      market_cap_rank,
+      current_price,
+      price_change_percentage_24h,
+    },
   } = Coin;
+
+  const percentageColor =
+    price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
 
   return (
     <View style={{ paddingHorizontal: 10 }}>
@@ -24,7 +32,25 @@ const CoinDetailedScreen = () => {
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.currentPrice}>${current_price.usd}</Text>
         </View>
-        <Text style={{ color: "white", fontSize: 17 }}>1.24</Text>
+        <View
+          style={{
+            backgroundColor: percentageColor,
+            padding: 5,
+            paddingHorizontal: 6,
+            borderRadius: 5,
+            flexDirection: "row",
+          }}
+        >
+          <AntDesign
+            style={{ alignSelf: "center", marginRight: 5 }}
+            name={price_change_percentage_24h < 0 ? "caretdown" : "caretup"}
+            size={12}
+            color={"white"}
+          />
+          <Text style={styles.priceChange}>
+            {price_change_percentage_24h.toFixed(2)}%
+          </Text>
+        </View>
       </View>
     </View>
   );

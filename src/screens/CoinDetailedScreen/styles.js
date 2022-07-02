@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  priceChange: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "500",
+  },
 });
 
 export default styles;
