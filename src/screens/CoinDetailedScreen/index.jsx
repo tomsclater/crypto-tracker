@@ -8,6 +8,7 @@ import {
   ChartDot,
   ChartPath,
   ChartPathProvider,
+  ChartYLabel,
 } from "@rainbow-me/animated-charts";
 
 const CoinDetailedScreen = () => {
@@ -28,12 +29,20 @@ const CoinDetailedScreen = () => {
 
   const screenWidth = Dimensions.get("window").width;
 
+  const formatCurrency = (value) => {
+    "worklet";
+    if (value === "") {
+      return `$${current_price.usd.toFixed(2)}`;
+    }
+    return `$${parseFloat(value).toFixed(2)}`;
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <ChartPathProvider
         data={{
           points: prices.map(([x, y]) => ({ x, y })),
-          smoothingStrategy: "complex",
+          smoothingStrategy: "bezier",
         }}
       >
         <CoinDetailedHeader
@@ -44,7 +53,7 @@ const CoinDetailedScreen = () => {
         <View style={styles.priceContainer}>
           <View>
             <Text style={styles.name}>{name}</Text>
-            <Text style={styles.currentPrice}>${current_price.usd}</Text>
+            <ChartYLabel format={formatCurrency} style={styles.currentPrice} />
           </View>
           <View
             style={{
@@ -66,12 +75,19 @@ const CoinDetailedScreen = () => {
             </Text>
           </View>
         </View>
-        <ChartPath
-          height={screenWidth / 2}
-          stroke="yellow"
-          width={screenWidth}
-        />
-        <ChartDot style={{ backgroundColor: "blue" }} />
+        <View>
+          <ChartPath
+            height={screenWidth / 2}
+            stroke="yellow"
+            width={screenWidth}
+          />
+          <ChartDot
+            style={{
+              backgroundColor:
+                current_price.usd > prices[0][1] ? "#16c784" : "#ea3943",
+            }}
+          />
+        </View>
       </ChartPathProvider>
     </View>
   );
