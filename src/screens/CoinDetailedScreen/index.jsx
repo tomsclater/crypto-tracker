@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, Dimensions, TextInput } from "react-native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
@@ -23,6 +23,9 @@ const CoinDetailedScreen = () => {
       price_change_percentage_24h,
     },
   } = Coin;
+
+  const [coinValue, setCoinValue] = useState("1");
+  const [usdValue, setUsdValue] = useState(current_price.usd);
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
@@ -87,13 +90,24 @@ const CoinDetailedScreen = () => {
         </View>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "row", flex: 1 }}>
-            <Text style={{ color: "white" }}>{symbol.toUpperCase()}</Text>
-            <TextInput style={styles.input} />
+            <Text style={{ color: "white", alignSelf: "center" }}>
+              {symbol.toUpperCase()}
+            </Text>
+            <TextInput
+              style={styles.input}
+              value={coinValue.toString()}
+              keyboardType="numeric"
+            />
           </View>
 
           <View style={{ flexDirection: "row", flex: 1 }}>
-            <Text style={{ color: "white" }}>USD</Text>
-            <TextInput style={styles.input} />
+            <Text style={{ color: "white", alignSelf: "center" }}>USD</Text>
+            <TextInput
+              style={styles.input}
+              value={usdValue.toString()}
+              keyboardType="numeric"
+              // onChangeText={}
+            />
           </View>
         </View>
       </ChartPathProvider>
