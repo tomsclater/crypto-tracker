@@ -24,7 +24,7 @@ const CoinDetailedScreen = () => {
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.currentPrice}>${current_price.usd}</Text>
         </View>
-        <Text style={{ color: "white" }}>1.24</Text>
+        <Text style={{ color: "white", fontSize: 17 }}>1.24</Text>
       </View>
     </View>
   );
