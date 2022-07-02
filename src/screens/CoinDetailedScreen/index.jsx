@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, TextInput } from "react-native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
 import styles from "./styles";
@@ -84,6 +84,17 @@ const CoinDetailedScreen = () => {
             width={screenWidth}
           />
           <ChartDot style={{ backgroundColor: chartColor }} />
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            <Text style={{ color: "white" }}>{symbol.toUpperCase()}</Text>
+            <TextInput style={styles.input} />
+          </View>
+
+          <View style={{ flexDirection: "row", flex: 1 }}>
+            <Text style={{ color: "white" }}>USD</Text>
+            <TextInput style={styles.input} />
+          </View>
         </View>
       </ChartPathProvider>
     </View>
