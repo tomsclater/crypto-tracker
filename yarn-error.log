@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @rainbow-me/animated-charts
 
 PATH: 
   C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\PuTTY\;C:\Program Files (x86)\Calibre2\;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\dotnet\;C:\Program Files (x86)\Yarn\bin\;C:\Users\tomsc\AppData\Local\Microsoft\WindowsApps;C:\Users\tomsc\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\tomsc\AppData\Roaming\npm;C:\Users\tomsc\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin;C:\Users\tomsc\AppData\Local\Yarn\bin;C:\Program Files\heroku\bin
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  SyntaxError: C:\Users\tomsc\AppData\Local\Yarn\Cache\v6\npm-array-reduce-0.0.0-173899d3ffd1c7d9383e4479525dbe278cab5f2b-integrity\node_modules\array-reduce\.yarn-metadata.json: Unexpected end of JSON input
+  SyntaxError: C:\Users\tomsc\AppData\Local\Yarn\Cache\v6\npm-array-filter-0.0.1-7da8cf2e26628ed732803581fd21f67cacd2eeec-integrity\node_modules\array-filter\.yarn-metadata.json: Unexpected end of JSON input
       at JSON.parse (<anonymous>)
       at C:\Program Files (x86)\Yarn\lib\cli.js:1629:59
       at Generator.next (<anonymous>)
@@ -39,7 +39,8 @@ npm manifest:
       "react": "17.0.2",
       "react-dom": "17.0.2",
       "react-native": "0.68.2",
-      "react-native-web": "0.17.7"
+      "react-native-web": "0.17.7",
+      "react-native-reanimated": "~2.8.0"
     },
     "devDependencies": {
       "@babel/core": "^7.12.9"
