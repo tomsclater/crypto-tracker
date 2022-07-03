@@ -42,6 +42,14 @@ const CoinDetailedScreen = () => {
     return `$${parseFloat(value).toFixed(2)}`;
   };
 
+  const changeCoinValue = (value) => {
+    setCoinValue(value);
+  };
+
+  const changeUsdValue = (value) => {
+    setUsdValue(value);
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <ChartPathProvider
@@ -97,6 +105,8 @@ const CoinDetailedScreen = () => {
               style={styles.input}
               value={coinValue.toString()}
               keyboardType="numeric"
+              onChangeText={changeCoinValue}
+              s
             />
           </View>
 
@@ -106,7 +116,7 @@ const CoinDetailedScreen = () => {
               style={styles.input}
               value={usdValue.toString()}
               keyboardType="numeric"
-              // onChangeText={}
+              onChangeText={changeUsdValue}
             />
           </View>
         </View>
