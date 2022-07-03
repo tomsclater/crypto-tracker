@@ -44,10 +44,13 @@ const CoinDetailedScreen = () => {
 
   const changeCoinValue = (value) => {
     setCoinValue(value);
+    const floatValue = parseFloat(value) || 0;
+    setUsdValue((floatValue * current_price.usd).toString());
   };
 
   const changeUsdValue = (value) => {
     setUsdValue(value);
+    setCoinValue(value / current_price.usd);
   };
 
   return (
