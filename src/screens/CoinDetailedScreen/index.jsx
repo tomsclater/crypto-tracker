@@ -25,7 +25,7 @@ const CoinDetailedScreen = () => {
   } = Coin;
 
   const [coinValue, setCoinValue] = useState("1");
-  const [usdValue, setUsdValue] = useState(current_price.usd);
+  const [usdValue, setUsdValue] = useState(current_price.usd.toString());
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
@@ -103,7 +103,7 @@ const CoinDetailedScreen = () => {
             </Text>
             <TextInput
               style={styles.input}
-              value={coinValue.toString()}
+              value={coinValue}
               keyboardType="numeric"
               onChangeText={changeCoinValue}
               s
@@ -114,7 +114,7 @@ const CoinDetailedScreen = () => {
             <Text style={{ color: "white", alignSelf: "center" }}>USD</Text>
             <TextInput
               style={styles.input}
-              value={usdValue.toString()}
+              value={usdValue}
               keyboardType="numeric"
               onChangeText={changeUsdValue}
             />
