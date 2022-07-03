@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Dimensions, TextInput } from "react-native";
 import Coin from "../../../assets/data/crypto.json";
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
@@ -44,13 +44,14 @@ const CoinDetailedScreen = () => {
 
   const changeCoinValue = (value) => {
     setCoinValue(value);
-    const floatValue = parseFloat(value) || 0;
+    const floatValue = parseFloat(value.replace(",", ".")) || 0;
     setUsdValue((floatValue * current_price.usd).toString());
   };
 
   const changeUsdValue = (value) => {
     setUsdValue(value);
-    setCoinValue(value / current_price.usd);
+    const floatValue = parseFloat(value.replace(",", ".")) || 0;
+    setCoinValue((floatValue / current_price.usd).toString());
   };
 
   return (
