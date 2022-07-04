@@ -30,6 +30,8 @@ const CoinDetailedScreen = () => {
     params: { coinId },
   } = route;
   const [loading, setLoading] = useState(false);
+  const [coinValue, setCoinValue] = useState("1");
+  const [usdValue, setUsdValue] = useState("");
 
   const fetchCoinData = async () => {
     setLoading(true);
@@ -37,6 +39,7 @@ const CoinDetailedScreen = () => {
     const fetchedCoinMarketData = await getCoinMarketChart(coinId);
     setCoin(fetchedCoinData);
     setCoinMarketData(fetchedCoinMarketData);
+    setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
     setLoading(false);
   };
 
@@ -60,9 +63,6 @@ const CoinDetailedScreen = () => {
   } = coin;
 
   const { prices } = coinMarketData;
-
-  const [coinValue, setCoinValue] = useState("1");
-  const [usdValue, setUsdValue] = useState(current_price.usd.toString());
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
