@@ -24,7 +24,6 @@ import {
 const CoinDetailedScreen = () => {
   const [coin, setCoin] = useState(null);
   const [coinMarketData, setCoinMarketData] = useState(null);
-
   const route = useRoute();
   const {
     params: { coinId },
