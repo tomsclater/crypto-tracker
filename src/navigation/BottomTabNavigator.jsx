@@ -1,6 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
+import WatchlistScreen from "../screens/WatchlistScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +33,19 @@ const BottomTabNavigator = () => {
         }}
       />
 
-      {/* <Tab.Screen /> */}
+      <Tab.Screen
+        name={"Watchlist"}
+        component={WatchlistScreen}
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <MaterialCommunityIcons
+              name="star-circle-outline"
+              size={focused ? 40 : 25}
+              color="white"
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
