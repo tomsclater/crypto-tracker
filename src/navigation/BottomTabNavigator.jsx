@@ -8,6 +8,7 @@ const Tab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: "white",
@@ -30,6 +31,7 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
+
       {/* <Tab.Screen /> */}
     </Tab.Navigator>
   );
