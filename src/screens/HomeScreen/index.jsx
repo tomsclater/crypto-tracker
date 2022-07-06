@@ -13,7 +13,7 @@ const HomeScreen = () => {
     }
     setLoading(true);
     const coinsData = await getMarketData(pageNumber);
-    setCoins((existingCoins) => ([...existingCoins, ...coinsData]));
+    setCoins((existingCoins) => [...existingCoins, ...coinsData]);
     setLoading(false);
   };
 
@@ -22,20 +22,20 @@ const HomeScreen = () => {
       return;
     }
     setLoading(true);
-    const coinsData = await getMarketData()
-    setCoins(coinsData)
+    const coinsData = await getMarketData();
+    setCoins(coinsData);
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchCoins()
-  }, [])
+    fetchCoins();
+  }, []);
 
   return (
     <FlatList
       data={coins}
       renderItem={({ item }) => <CoinItem marketCoin={item} />}
-      onEndReached={() => fetchCoins((coins.length / 50) + 1)}
+      onEndReached={() => fetchCoins(coins.length / 50 + 1)}
       refreshControl={
         <RefreshControl
           refreshing={loading}
