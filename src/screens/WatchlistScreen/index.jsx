@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { View, Text } from "react-native";
-import { WatchlistContext } from "../../contexts/WatchlistContext";
+import { useWatchlist } from "../../contexts/WatchlistContext";
 
 const WatchlistScreen = () => {
-  const { value } = useContext(WatchlistContext);
+  const { value } = useWatchlist();
   console.log(value);
   return (
     <View>

@@ -1,10 +1,27 @@
-import React, { useContext, createContext } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const WatchlistContext = createContext();
+const WatchlistContext = createContext();
+
+export const useWatchlist = () => useContext(WatchlistContext);
 
 const WatchlistProvider = ({ children }) => {
+  const [watchlistCoinIds, setWatchlistCoinIds] = useState([]);
+
+  const getWatchlistData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem("@watchlist_coins");
+      setWatchlistCoinIds(jsonValue != null ? JSON.parse(jsonValue) : []);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getWatchlistData();
+  }, []);
   return (
-    <WatchlistContext.Provider value={{ value: "yay" }}>
+    <WatchlistContext.Provider value={{ watchlistCoinIds }}>
       {children}
     </WatchlistContext.Provider>
   );
