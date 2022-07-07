@@ -20,8 +20,22 @@ const WatchlistProvider = ({ children }) => {
   useEffect(() => {
     getWatchlistData();
   }, []);
+
+  const storeWatchlistCoinId = async (coinId) => {
+    try {
+      const newWatchlist = [...watchlistCoinIds, coinId];
+      const jsonValue = JSON.stringify(newWatchlist);
+      await AsyncStorage.setItem("@watchlist_coins", jsonValue);
+      setWatchlistCoinIds(newWatchlist);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <WatchlistContext.Provider value={{ watchlistCoinIds }}>
+    <WatchlistContext.Provider
+      value={{ watchlistCoinIds, storeWatchlistCoinId }}
+    >
       {children}
     </WatchlistContext.Provider>
   );
