@@ -32,9 +32,18 @@ const WatchlistProvider = ({ children }) => {
     }
   };
 
+  const removeWatchlistCoinId = async (coinId) => {
+    const newWatchlist = watchlistCoinIds.filter(
+      (coinIdValue) => coinIdValue !== coinId
+    );
+    const jsonValue = JSON.stringify(newWatchlist);
+    await AsyncStorage.setItem("@watchlist_coins", jsonValue);
+    setWatchlistCoinIds(newWatchlist);
+  };
+
   return (
     <WatchlistContext.Provider
-      value={{ watchlistCoinIds, storeWatchlistCoinId }}
+      value={{ watchlistCoinIds, storeWatchlistCoinId, removeWatchlistCoinId }}
     >
       {children}
     </WatchlistContext.Provider>
