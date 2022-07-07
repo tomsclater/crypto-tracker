@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import { useWatchlist } from "../../contexts/WatchlistContext";
 import CoinItem from "../../components/CoinItem";
 

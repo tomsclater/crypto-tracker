@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { Ionicons, EvilIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
@@ -25,7 +25,11 @@ const CoinDetailedHeader = (props) => {
           </Text>
         </View>
       </View>
-      <EvilIcons name="user" size={30} color="white" />
+      <MaterialCommunityIcons
+        name="star-circle-outline"
+        size={30}
+        color="white"
+      />
     </View>
   );
 };
