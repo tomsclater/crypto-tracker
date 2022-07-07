@@ -3,10 +3,15 @@ import { View, Text, Image } from "react-native";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
+import { useWatchlist } from "../../../../contexts/WatchlistContext";
 
 const CoinDetailedHeader = (props) => {
-  const { image, symbol, marketCapRank } = props;
+  const { coinId, image, symbol, marketCapRank } = props;
   const navigation = useNavigation();
+  const { watchlistCoinIds, storeWatchlistCoinId } = useWatchlist();
+
+  const checkIfCoinIsWatchlisted = () =>
+    watchlistCoinIds.some((coinIdValue) => coinIdValue === coinId);
   return (
     <View style={styles.headerContainer}>
       {/* <Text style={{ color: "white" }}>Detailed Screen</Text> */}
@@ -26,9 +31,9 @@ const CoinDetailedHeader = (props) => {
         </View>
       </View>
       <MaterialCommunityIcons
-        name="star-circle-outline"
-        size={30}
-        color="white"
+        name={checkIfCoinIsWatchlisted() ? "star" : "star-circle-outline"}
+        size={25}
+        color={checkIfCoinIsWatchlisted() ? "gold" : "white"}
       />
     </View>
   );
