@@ -51,6 +51,7 @@ const CoinDetailedScreen = () => {
   }
 
   const {
+    id,
     image: { small },
     name,
     symbol,

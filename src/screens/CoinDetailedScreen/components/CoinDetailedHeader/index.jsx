@@ -8,10 +8,19 @@ import { useWatchlist } from "../../../../contexts/WatchlistContext";
 const CoinDetailedHeader = (props) => {
   const { coinId, image, symbol, marketCapRank } = props;
   const navigation = useNavigation();
-  const { watchlistCoinIds, storeWatchlistCoinId } = useWatchlist();
+  const { watchlistCoinIds, storeWatchlistCoinId, removeWatchlistCoinId } =
+    useWatchlist();
 
   const checkIfCoinIsWatchlisted = () =>
     watchlistCoinIds.some((coinIdValue) => coinIdValue === coinId);
+
+  const handleWatchlistCoin = () => {
+    if (checkIfCoinIsWatchlisted()) {
+      return removeWatchlistCoinId(coinId);
+    }
+    return storeWatchlistCoinId(coinId);
+  };
+
   return (
     <View style={styles.headerContainer}>
       {/* <Text style={{ color: "white" }}>Detailed Screen</Text> */}
@@ -32,8 +41,9 @@ const CoinDetailedHeader = (props) => {
       </View>
       <MaterialCommunityIcons
         name={checkIfCoinIsWatchlisted() ? "star" : "star-circle-outline"}
-        size={25}
+        size={32}
         color={checkIfCoinIsWatchlisted() ? "gold" : "white"}
+        onPress={handleWatchlistCoin}
       />
     </View>
   );
