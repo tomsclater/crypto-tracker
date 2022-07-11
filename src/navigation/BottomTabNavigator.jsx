@@ -2,7 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import WatchlistScreen from "../screens/WatchlistScreen";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import PortfolioScreen from "../screens/PortfolioScreen";
+import { MaterialCommunityIcons, Foundation } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,6 +27,20 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({ focused, color }) => (
             <MaterialCommunityIcons
               name="home-circle-outline"
+              size={focused ? 40 : 25}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name={"Portfolio"}
+        component={PortfolioScreen}
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <Foundation
+              name="graph-pie"
               size={focused ? 40 : 25}
               color={color}
             />

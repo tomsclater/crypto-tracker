@@ -67,7 +67,7 @@ const CoinItem = ({ marketCoin }) => {
             color={percentageColor}
           />
           <Text style={{ color: percentageColor }}>
-            {price_change_percentage_24h.toFixed(2)}% today
+            {price_change_percentage_24h?.toFixed(2)}% today
           </Text>
         </View>
       </View>
