@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FlatList, Text } from "react-native";
+import { FlatList, Text, RefreshControl } from "react-native";
 import { useWatchlist } from "../../contexts/WatchlistContext";
 import CoinItem from "../../components/CoinItem";
 import { getWatchlistedCoins } from '../../services/requests'
@@ -18,17 +18,29 @@ const WatchlistScreen = () => {
     }
     setLoading(true);
     const watchlistedCoinsData = await getWatchlistedCoins(1, transformCoinIds());
-    setCoins([...coins, ...watchlistedCoinsData]);
+    setCoins(watchlistedCoinsData);
     setLoading(false);
   }
 
   useEffect(() => {
     fetchWatchlistedCoins()
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    fetchWatchlistedCoins();
+  }, [watchlistCoinIds])
+
   return (
     <FlatList
       data={coins}
       renderItem={({ item }) => <CoinItem marketCoin={item} />}
+      ref5reshControl={
+        <RefreshControl 
+          refreshing={loading}
+          tintColor="white"
+          onRefresh={fetchWatchlistedCoins}
+        />
+      }
     />
   );
 };
