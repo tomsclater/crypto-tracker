@@ -13,7 +13,7 @@ const HomeScreen = () => {
     }
     setLoading(true);
     const coinsData = await getMarketData(pageNumber);
-    setCoins((existingCoins) => [...existingCoins, ...coinsData]);
+    setCoins((existingCoins) => ([...existingCoins, ...coinsData]));
     setLoading(false);
   };
 
