@@ -41,7 +41,7 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({ focused, color }) => (
             <Foundation
               name="graph-pie"
-              size={focused ? 40 : 25}
+              size={focused ? 40 : 30}
               color={color}
             />
           ),
