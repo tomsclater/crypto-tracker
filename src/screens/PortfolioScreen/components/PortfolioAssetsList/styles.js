@@ -15,12 +15,27 @@ const styles = StyleSheet.create({
   valueChange: {
     fontWeight: "600",
     fontSize: 16,
-    color: "white",
+    color: "#16c784",
   },
   percentageChange: {
     color: "white",
     fontWeight: "500",
     fontSize: 17,
+  },
+  balanceContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 10,
+    marginBottom: 5,
+    marginHorizontal: 10,
+  },
+  priceChangePercentageContainer: {
+    flexDirection: "row",
+    backgroundColor: "#16c784",
+    paddingHorizontal: 3,
+    paddingVertical: 8,
+    borderRadius: 5,
   },
 });
 
