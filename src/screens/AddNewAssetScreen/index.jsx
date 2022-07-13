@@ -1,26 +1,18 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, Pressable } from "react-native";
 import SearchableDropDown from "react-native-searchable-dropdown";
+import styles from "./styles";
 
 const AddNewAssetScreen = () => {
+  const [boughtAssetQuantity, setboughtAssetQuantity] = useState("");
   return (
     <View>
       <SearchableDropDown
-        containerStyle={{
-          width: "100%",
-          paddingHorizontal: 10,
-          paddingVertical: 20,
-        }}
-        itemStyle={{
-          padding: 10,
-          marginTop: 2,
-          backgroundColor: "#1e1e1e",
-          borderWidth: 1,
-          borderColor: "#444444",
-          borderRadius: 5,
-        }}
-        itemTextStyle={{ color: "white" }}
         items={[]}
+        onItemSelect={(item) => console.log(item)}
+        containerStyle={styles.dropdownContainer}
+        itemStyle={styles.item}
+        itemTextStyle={{ color: "white" }}
         resetValue={false}
         placeholder={"Select a coin..."}
         placeholderTextColor="white"
@@ -36,6 +28,24 @@ const AddNewAssetScreen = () => {
           },
         }}
       />
+      <View style={styles.boughtQuantityContainer}>
+        <View style={{ flexDirection: "row" }}>
+          <TextInput
+            style={{ color: "white", fontSize: 90 }}
+            value={boughtAssetQuantity}
+            placeholder="0"
+            keyboardType="numeric"
+            onChangeText={setboughtAssetQuantity}
+          />
+          <Text style={styles.ticker}>BTC</Text>
+        </View>
+      </View>
+      <Pressable
+        style={styles.buttonContainer}
+        onPress={() => navigation.navigate("AddNewAssetScreen")}
+      >
+        <Text style={styles.buttonText}>Add New Asset</Text>
+      </Pressable>
     </View>
   );
 };
