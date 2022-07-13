@@ -18,10 +18,14 @@ const PortfolioAssetsItem = () => {
             style={{ alignSelf: "center", marginRight: 5 }}
             name={"caretup"}
             size={12}
-            color={"white"}
+            color={"#16c784"}
           />
-          <Text style={{ color: "white", fontWeight: "600" }}>1.2%</Text>
+          <Text style={{ color: "#16c784", fontWeight: "600" }}>1.2%</Text>
         </View>
+      </View>
+      <View style={styles.quantityContainer}>
+        <Text style={styles.title}>$40000</Text>
+        <Text style={styles.ticker}>2 BTC</Text>
       </View>
     </View>
   );
