@@ -2,14 +2,15 @@ import React from "react";
 import { View, Text, FlatList, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import PortfolioAssetsItem from "../PortfolioAssetsItem";
 // "#ea3943" : "#16c784"
 
 const PortfolioAssetsList = () => {
   return (
     <View>
       <FlatList
-        data={[]}
-        renderItem={() => <Text>Item</Text>}
+        data={[{ id: "bitcoin" }]}
+        renderItem={({ item }) => <PortfolioAssetsItem assetItem={item} />}
         ListHeaderComponent={
           <>
             <View style={styles.balanceContainer}>
@@ -35,7 +36,7 @@ const PortfolioAssetsList = () => {
         }
         ListFooterComponent={
           <Pressable style={styles.buttonContainer}>
-            <Text style={styles.buttonText}>Add New asset</Text>
+            <Text style={styles.buttonText}>Add New Asset</Text>
           </Pressable>
         }
       />
