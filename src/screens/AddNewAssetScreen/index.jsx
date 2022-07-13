@@ -4,9 +4,9 @@ import SearchableDropDown from "react-native-searchable-dropdown";
 import styles from "./styles";
 
 const AddNewAssetScreen = () => {
-  const [boughtAssetQuantity, setboughtAssetQuantity] = useState("");
+  const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <SearchableDropDown
         items={[]}
         onItemSelect={(item) => console.log(item)}
@@ -35,10 +35,11 @@ const AddNewAssetScreen = () => {
             value={boughtAssetQuantity}
             placeholder="0"
             keyboardType="numeric"
-            onChangeText={setboughtAssetQuantity}
+            onChangeText={setBoughtAssetQuantity}
           />
           <Text style={styles.ticker}>BTC</Text>
         </View>
+        <Text style={styles.pricePerCoin}>$20000 per coin</Text>
       </View>
       <Pressable
         style={styles.buttonContainer}
