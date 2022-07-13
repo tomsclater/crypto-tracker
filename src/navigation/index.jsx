@@ -10,14 +10,32 @@ const Navigation = () => {
   return (
     <Stack.Navigator
       initialRouteName="Root"
-      screenOptions={{ headerShown: false }}
+      // screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
+      <Stack.Screen
+        name="Root"
+        component={BottomTabNavigator}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name={"CoinDetailedScreen"}
         component={CoinDetailedScreen}
+        options={{ headerShown: false }}
       />
-      <Stack.Screen name={"AddNewAssetScreen"} component={AddNewAssetScreen} />
+      <Stack.Screen
+        name={"AddNewAssetScreen"}
+        component={AddNewAssetScreen}
+        options={{
+          title: "Add New Asset",
+          headerStyle: {
+            backgroundColor: "#121212",
+          },
+          headerTintColor: "white",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };
