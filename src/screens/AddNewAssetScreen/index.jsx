@@ -5,6 +5,8 @@ import styles from "./styles";
 import { useRecoilState } from "recoil";
 import { allPortfolioBoughtAssetsInStorage } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getDetailedCoinData } from "../../services/requests";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from '@react-navigation/native';
 
 const AddNewAssetScreen = () => {
   const [allCoins, setAllCoins] = useState([]);
@@ -19,9 +21,8 @@ const AddNewAssetScreen = () => {
 
   console.log(selectedCoin);
 
+  const navigation = useNavigation();
   const isQuantityEntered = () => boughtAssetQuantity === "";
-
-  const onAddNewAsset = () => {};
 
   const fetchAllCoins = async () => {
     if (loading) {
@@ -39,6 +40,7 @@ const AddNewAssetScreen = () => {
     }
     setLoading(true);
     const coinInfo = await getDetailedCoinData(selectedCoinId);
+    console.log(coinInfo)
     setSelectedCoin(coinInfo);
     setLoading(false);
   };
@@ -52,6 +54,24 @@ const AddNewAssetScreen = () => {
       fetchCoinInfo();
     }
   }, [selectedCoinId]);
+
+  const onAddNewAsset = async () => {
+    const newAsset = {
+      id: selectedCoin.id,
+      name: selectedCoin.name,
+      image: selectedCoin.small,
+      ticker: selectedCoin.symbol.toUpperCase(),
+      quantityBought: parseFloat(boughtAssetQuantity),
+      priceBought: selectedCoin.market_data.current_price.usd
+    }
+    const newAssets = [...assetsInStorage, newAsset]
+    const jsonValue = JSON.stringify(newAssets);
+    await AsyncStorage.setItem('@portfolio_coins', jsonValue)
+    setAssetsInStorage(newAssets);
+    navigation.goBack();
+  };
+
+  console.log(selectedCoin)
 
   return (
     <View style={{ flex: 1 }}>
@@ -76,7 +96,7 @@ const AddNewAssetScreen = () => {
           },
         }}
       />
-      {selectedCoinId && (
+      {selectedCoin && (
         <>
           <View style={styles.boughtQuantityContainer}>
             <View style={{ flexDirection: "row" }}>
@@ -87,15 +107,14 @@ const AddNewAssetScreen = () => {
                 keyboardType="numeric"
                 onChangeText={setBoughtAssetQuantity}
               />
-              <Text style={styles.ticker}>BTC</Text>
+              <Text style={styles.ticker}>{selectedCoin.symbol.toUpperCase()}</Text>
             </View>
-            <Text style={styles.pricePerCoin}>$20000 per coin</Text>
+            <Text style={styles.pricePerCoin}>${selectedCoin.market_data.current_price.usd} per coin</Text>
           </View>
           <Pressable
             style={{
               ...styles.buttonContainer,
-              backgroundColor:
-                boughtAssetQuantity === "" ? "#303030" : "#4169E1",
+              backgroundColor: isQuantityEntered() ? "#303030" : "#4169E1",
             }}
             onPress={onAddNewAsset}
             disabled={isQuantityEntered()}
