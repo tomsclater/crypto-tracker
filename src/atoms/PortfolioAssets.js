@@ -20,15 +20,20 @@ export const allPortfolioBoughtAssetsFromAPI = selector({
     );
     const boughtAssets = boughtPortfolioAssets.map((boughtAsset) => {
       const portfolioAsset = portfolioAssetsMarketData.filter(
-        (item) => boughtAsset.id === item.id)[0];
+        (item) => boughtAsset.id === item.id
+      )[0];
       return {
         ...boughtAsset,
         currentPrice: portfolioAsset.current_price,
-        priceChangePercentage: portfolioAsset.price_change_percentage_24,
+        priceChangePercentage: portfolioAsset.price_change_percentage_24h,
       };
     });
 
-    return boughtAssets.sort((item1, item2) => (item1.quantityBought * item1.currentPrice) < (item2.quantityBought * item2.currentPrice))
+    return boughtAssets.sort(
+      (item1, item2) =>
+        item1.quantityBought * item1.currentPrice <
+        item2.quantityBought * item2.currentPrice
+    );
   },
 });
 

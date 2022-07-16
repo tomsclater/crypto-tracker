@@ -5,13 +5,47 @@ import styles from "./styles";
 import PortfolioAssetsItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
 import { useRecoilValue, useRecoilState } from "recoil";
-import { allPortfolioAssets } from "../../../../atoms/PortfolioAssets";
+import {
+  allPortfolioAssets,
+  allPortfolioBoughtAssetsInStorage,
+} from "../../../../atoms/PortfolioAssets";
 
 // "#ea3943" : "#16c784"
 
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
   const assets = useRecoilValue(allPortfolioAssets);
+
+  const getCurrentBalance = () =>
+    assets.reduce(
+      (total, currentAsset) =>
+        total + currentAsset.currentPrice * currentAsset.quantityBought,
+      0
+    );
+
+  const getCurrentValueChange = () => {
+    const currentBalance = getCurrentBalance();
+    const boughtBalance = assets.reduce(
+      (total, currentAsset) =>
+        total + currentAsset.priceBought * currentAsset.quantityBought,
+      0
+    );
+
+    return (currentBalance - boughtBalance).toFixed(2);
+  };
+
+  const getCurrentPercentageChange = () => {
+    const currentBalance = getCurrentBalance();
+    const boughtBalance = assets.reduce(
+      (total, currentAsset) =>
+        total + currentAsset.priceBought * currentAsset.quantityBought,
+      0
+    );
+    return (
+      (((currentBalance - boughtBalance) / boughtBalance) * 100).toFixed(2) || 0
+    );
+  };
+
   return (
     <View>
       <FlatList
@@ -22,8 +56,12 @@ const PortfolioAssetsList = () => {
             <View style={styles.balanceContainer}>
               <View>
                 <Text style={styles.currentBalance}>Current Balance</Text>
-                <Text style={styles.currentBalanceValue}>$20000</Text>
-                <Text style={styles.valueChange}>$1000 (All Time)</Text>
+                <Text style={styles.currentBalanceValue}>
+                  ${getCurrentBalance()}
+                </Text>
+                <Text style={styles.valueChange}>
+                  ${getCurrentValueChange()} (All Time)
+                </Text>
               </View>
               <View style={styles.priceChangePercentageContainer}>
                 <AntDesign
@@ -32,7 +70,9 @@ const PortfolioAssetsList = () => {
                   size={12}
                   color={"white"}
                 />
-                <Text style={styles.percentageChange}>1.2%</Text>
+                <Text style={styles.percentageChange}>
+                  {getCurrentPercentageChange()}%
+                </Text>
               </View>
             </View>
             <View>

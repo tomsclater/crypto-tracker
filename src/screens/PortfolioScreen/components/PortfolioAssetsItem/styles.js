@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+    alignSelf: "flex-end",
   },
   ticker: {
     color: "grey",

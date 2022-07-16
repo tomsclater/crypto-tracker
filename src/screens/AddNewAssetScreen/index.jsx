@@ -6,7 +6,7 @@ import { useRecoilState } from "recoil";
 import { allPortfolioBoughtAssetsInStorage } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getDetailedCoinData } from "../../services/requests";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 const AddNewAssetScreen = () => {
   const [allCoins, setAllCoins] = useState([]);
@@ -40,7 +40,6 @@ const AddNewAssetScreen = () => {
     }
     setLoading(true);
     const coinInfo = await getDetailedCoinData(selectedCoinId);
-    console.log(coinInfo)
     setSelectedCoin(coinInfo);
     setLoading(false);
   };
@@ -62,16 +61,14 @@ const AddNewAssetScreen = () => {
       image: selectedCoin.small,
       ticker: selectedCoin.symbol.toUpperCase(),
       quantityBought: parseFloat(boughtAssetQuantity),
-      priceBought: selectedCoin.market_data.current_price.usd
-    }
-    const newAssets = [...assetsInStorage, newAsset]
+      priceBought: selectedCoin.market_data.current_price.usd,
+    };
+    const newAssets = [...assetsInStorage, newAsset];
     const jsonValue = JSON.stringify(newAssets);
-    await AsyncStorage.setItem('@portfolio_coins', jsonValue)
+    await AsyncStorage.setItem("@portfolio_coins", jsonValue);
     setAssetsInStorage(newAssets);
     navigation.goBack();
   };
-
-  console.log(selectedCoin)
 
   return (
     <View style={{ flex: 1 }}>
@@ -107,9 +104,13 @@ const AddNewAssetScreen = () => {
                 keyboardType="numeric"
                 onChangeText={setBoughtAssetQuantity}
               />
-              <Text style={styles.ticker}>{selectedCoin.symbol.toUpperCase()}</Text>
+              <Text style={styles.ticker}>
+                {selectedCoin.symbol.toUpperCase()}
+              </Text>
             </View>
-            <Text style={styles.pricePerCoin}>${selectedCoin.market_data.current_price.usd} per coin</Text>
+            <Text style={styles.pricePerCoin}>
+              ${selectedCoin.market_data.current_price.usd} per coin
+            </Text>
           </View>
           <Pressable
             style={{
