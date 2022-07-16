@@ -4,17 +4,22 @@ import SearchableDropDown from "react-native-searchable-dropdown";
 import styles from "./styles";
 import { useRecoilState } from "recoil";
 import { allPortfolioBoughtAssetsInStorage } from "../../atoms/PortfolioAssets";
-import { getAllCoins } from "../../services/requests";
+import { getAllCoins, getDetailedCoinData } from "../../services/requests";
 
 const AddNewAssetScreen = () => {
   const [allCoins, setAllCoins] = useState([]);
   const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
   const [loading, setLoading] = useState(false);
-  const [selectedCoinId, setSelectedCoinId] = useState(false);
+  const [selectedCoinId, setSelectedCoinId] = useState(null);
+  const [selectedCoin, setSelectedCoin] = useState(null);
 
   const [assetsInStorage, setAssetsInStorage] = useRecoilState(
     allPortfolioBoughtAssetsInStorage
   );
+
+  console.log(selectedCoin);
+
+  const isQuantityEntered = () => boughtAssetQuantity === "";
 
   const onAddNewAsset = () => {};
 
@@ -28,9 +33,25 @@ const AddNewAssetScreen = () => {
     setLoading(false);
   };
 
+  const fetchCoinInfo = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    const coinInfo = await getDetailedCoinData(selectedCoinId);
+    setSelectedCoin(coinInfo);
+    setLoading(false);
+  };
+
   useEffect(() => {
     fetchAllCoins();
   }, []);
+
+  useEffect(() => {
+    if (selectedCoinId) {
+      fetchCoinInfo();
+    }
+  }, [selectedCoinId]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -70,8 +91,23 @@ const AddNewAssetScreen = () => {
             </View>
             <Text style={styles.pricePerCoin}>$20000 per coin</Text>
           </View>
-          <Pressable style={styles.buttonContainer} onPress={onAddNewAsset}>
-            <Text style={styles.buttonText}>Add New Asset</Text>
+          <Pressable
+            style={{
+              ...styles.buttonContainer,
+              backgroundColor:
+                boughtAssetQuantity === "" ? "#303030" : "#4169E1",
+            }}
+            onPress={onAddNewAsset}
+            disabled={isQuantityEntered()}
+          >
+            <Text
+              style={{
+                ...styles.buttonText,
+                color: isQuantityEntered() ? "grey" : "white",
+              }}
+            >
+              Add New Asset
+            </Text>
           </Pressable>
         </>
       )}
