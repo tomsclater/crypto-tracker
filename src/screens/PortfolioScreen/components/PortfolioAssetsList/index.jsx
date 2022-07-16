@@ -4,10 +4,15 @@ import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import PortfolioAssetsItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { allPortfolioAssets } from "../../../../atoms/PortfolioAssets";
+
 // "#ea3943" : "#16c784"
 
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
+  const [assets, setAssets] = useRecoilState(allPortfolioAssets);
+  console.log(assets);
   return (
     <View>
       <FlatList
