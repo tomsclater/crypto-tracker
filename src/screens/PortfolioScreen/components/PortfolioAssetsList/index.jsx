@@ -46,6 +46,8 @@ const PortfolioAssetsList = () => {
     );
   };
 
+  const isChangePositive = () => getCurrentValueChange() >= 0;
+
   return (
     <View>
       <FlatList
@@ -59,14 +61,24 @@ const PortfolioAssetsList = () => {
                 <Text style={styles.currentBalanceValue}>
                   ${getCurrentBalance()}
                 </Text>
-                <Text style={styles.valueChange}>
+                <Text
+                  style={{
+                    ...styles.valueChange,
+                    color: isChangePositive() ? "green" : "red",
+                  }}
+                >
                   ${getCurrentValueChange()} (All Time)
                 </Text>
               </View>
-              <View style={styles.priceChangePercentageContainer}>
+              <View
+                style={{
+                  ...styles.priceChangePercentageContainer,
+                  backgroundColor: isChangePositive() ? "green" : "red",
+                }}
+              >
                 <AntDesign
                   style={{ alignSelf: "center", marginRight: 5 }}
-                  name={"caretup"}
+                  name={isChangePositive() ? "caretup" : "caretdown"}
                   size={12}
                   color={"white"}
                 />

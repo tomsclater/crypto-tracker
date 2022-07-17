@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     marginHorizontal: 10,
+    borderRadius: 5,
   },
   priceChangePercentageContainer: {
     flexDirection: "row",
-    backgroundColor: "#16c784",
     paddingHorizontal: 3,
     paddingVertical: 8,
     borderRadius: 5,
