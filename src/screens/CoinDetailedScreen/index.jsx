@@ -136,12 +136,11 @@ const CoinDetailedScreen = () => {
           </View>
         </View>
         <View style={styles.filtersCointainer}>
-          <Text style={{ color: "white" }}>24h</Text>
-          <Text style={{ color: "white" }}>7d</Text>
-          <Text style={{ color: "white" }}>30d</Text>
-          <Text style={{ color: "white" }}>1y</Text>
-          <Text style={{ color: "white" }}>All</Text>
-          <FilterComponent />
+          <FilterComponent filterDay="1" filterText="24h" />
+          <FilterComponent filterDay="7" filterText="7d" />
+          <FilterComponent filterDay="30d" filterText="30d" />
+          <FilterComponent filterDay="365" filterText="1y" />
+          <FilterComponent filterDay="max" filterText="All" />
         </View>
         <View>
           <ChartPath
