@@ -20,6 +20,7 @@ import {
   getDetailedCoinData,
   getCoinMarketChart,
 } from "../../services/requests";
+import FilterComponent from "./components/CoinDetailedHeader/FilterComponent";
 
 const CoinDetailedScreen = () => {
   const [coin, setCoin] = useState(null);
@@ -133,6 +134,14 @@ const CoinDetailedScreen = () => {
               {price_change_percentage_24h?.toFixed(2)}%
             </Text>
           </View>
+        </View>
+        <View style={styles.filtersCointainer}>
+          <Text style={{ color: "white" }}>24h</Text>
+          <Text style={{ color: "white" }}>7d</Text>
+          <Text style={{ color: "white" }}>30d</Text>
+          <Text style={{ color: "white" }}>1y</Text>
+          <Text style={{ color: "white" }}>All</Text>
+          <FilterComponent />
         </View>
         <View>
           <ChartPath

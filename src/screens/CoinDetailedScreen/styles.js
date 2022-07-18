@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
   },
+  filtersCointainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backgroundColor: "#2b2b2b",
+    paddingVertical: 5,
+    borderRadius: 5,
+    marginVertical: 10,
+  },
 });
 
 export default styles;

@@ -23,7 +23,6 @@ const CoinDetailedHeader = (props) => {
 
   return (
     <View style={styles.headerContainer}>
-      {/* <Text style={{ color: "white" }}>Detailed Screen</Text> */}
       <Ionicons
         name="chevron-back-sharp"
         size={24}
