@@ -35,14 +35,23 @@ const HomeScreen = () => {
     <View>
       <Text
         style={{
+          fontFamily: "BarlowCondensed",
           color: "white",
           fontSize: 25,
           letterSpacing: 1,
-          paddingHorizonal: 20,
-          paddingBottom: 5,
+          paddingLeft: 15,
+          paddingBottom: 8,
         }}
       >
-        Crypto Assets
+        <Text
+          style={{
+            fontSize: "14",
+          }}
+        >
+          💎
+        </Text>
+        {"  "}
+        Crypto Prices
       </Text>
       <FlatList
         data={coins}

@@ -66,13 +66,14 @@ const CoinItem = ({ marketCoin }) => {
             size={14}
             color={percentageColor}
           />
+          {/* <Text style={{ color: "white" }}>Test</Text> */}
           <Text style={{ color: percentageColor }}>
             {price_change_percentage_24h?.toFixed(2)}% today
           </Text>
         </View>
       </View>
       <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
-        <Text style={styles.title}>{current_price}</Text>
+        <Text style={styles.title}>${current_price}</Text>
         <Text style={{ color: "white" }}>
           MCap {normalizeMarketCap(market_cap)}
         </Text>
