@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Image, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,6 +21,11 @@ const CoinItem = ({ marketCoin }) => {
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
+
+  const rocketColor =
+    price_change_percentage_24h < 0 ? "#7B3F00" : "#16c784" || "white";
+
+  // const rocketChange = price_change_percentage_24h < 0
 
   const normalizeMarketCap = (marketCap) => {
     if (marketCap > 1e12) {
@@ -53,6 +59,7 @@ const CoinItem = ({ marketCoin }) => {
           alignSelf: "center",
         }}
       />
+      {/* <Text>{rocketChange}</Text> */}
       <View>
         <Text style={styles.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
@@ -66,7 +73,17 @@ const CoinItem = ({ marketCoin }) => {
             size={14}
             color={percentageColor}
           />
-          {/* <Text style={{ color: "white" }}>Test</Text> */}
+          <MaterialCommunityIcons
+            style={styles.green}
+            name={
+              price_change_percentage_24h < 0
+                ? "emoticon-poop"
+                : "rocket-launch"
+            }
+            size={14}
+            color={rocketColor}
+          />
+
           <Text style={{ color: percentageColor }}>
             {price_change_percentage_24h?.toFixed(2)}% today
           </Text>
