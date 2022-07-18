@@ -65,13 +65,16 @@ const CoinDetailedScreen = () => {
   const { prices } = coinMarketData;
 
   const percentageColor =
-    price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || 'white';
+    price_change_percentage_24h < 0 ? "#ea3943" : "#16c784" || "white";
   const chartColor = current_price.usd > prices[0][1] ? "#16c784" : "#ea3943";
   const screenWidth = Dimensions.get("window").width;
 
   const formatCurrency = (value) => {
     "worklet";
     if (value === "") {
+      if (current_price.usd < 1) {
+        return `$${current_price.usd}`;
+      }
       return `$${current_price.usd.toFixed(2)}`;
     }
     return `$${parseFloat(value).toFixed(2)}`;

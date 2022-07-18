@@ -36,7 +36,7 @@ const HomeScreen = () => {
       <View style={{ flexDirection: "row" }}>
         <Text
           style={{
-            fontSize: "14",
+            fontSize: 14,
             paddingTop: 10,
             paddingLeft: 15,
           }}

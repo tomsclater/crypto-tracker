@@ -25,8 +25,6 @@ const CoinItem = ({ marketCoin }) => {
   const rocketColor =
     price_change_percentage_24h < 0 ? "#7B3F00" : "#16c784" || "white";
 
-  // const rocketChange = price_change_percentage_24h < 0
-
   const normalizeMarketCap = (marketCap) => {
     if (marketCap > 1e12) {
       return `${(marketCap / 1e12).toFixed(3)} T`;
