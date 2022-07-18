@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   valueChange: {
-    fontWeight: "600",
+    fontWeight: "700",
     fontSize: 16,
     color: "#16c784",
   },
   percentageChange: {
     color: "white",
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: 17,
   },
   balanceContainer: {

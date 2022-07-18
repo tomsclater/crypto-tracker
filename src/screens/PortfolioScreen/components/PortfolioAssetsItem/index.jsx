@@ -8,7 +8,6 @@ const PortfolioAssetsItem = ({ assetItem }) => {
     currentPrice,
     image,
     name,
-    priceBought,
     priceChangePercentage,
     quantityBought,
     ticker,

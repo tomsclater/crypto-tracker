@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   ticker: {
     color: "grey",
-    fontWeight: "600",
+    fontWeight: "700",
   },
   coinContainer: {
     flexDirection: "row",
