@@ -32,6 +32,7 @@ const CoinDetailedScreen = () => {
   const [loading, setLoading] = useState(false);
   const [coinValue, setCoinValue] = useState("1");
   const [usdValue, setUsdValue] = useState("");
+  const [selectedRange, setSelectedRange] = useState("1");
 
   const fetchCoinData = async () => {
     setLoading(true);
@@ -136,11 +137,31 @@ const CoinDetailedScreen = () => {
           </View>
         </View>
         <View style={styles.filtersCointainer}>
-          <FilterComponent filterDay="1" filterText="24h" />
-          <FilterComponent filterDay="7" filterText="7d" />
-          <FilterComponent filterDay="30d" filterText="30d" />
-          <FilterComponent filterDay="365" filterText="1y" />
-          <FilterComponent filterDay="max" filterText="All" />
+          <FilterComponent
+            filterDay="1"
+            filterText="24h"
+            selectedRange={selectedRange}
+          />
+          <FilterComponent
+            filterDay="7"
+            filterText="7d"
+            selectedRange={selectedRange}
+          />
+          <FilterComponent
+            filterDay="30d"
+            filterText="30d"
+            selectedRange={selectedRange}
+          />
+          <FilterComponent
+            filterDay="365"
+            filterText="1y"
+            selectedRange={selectedRange}
+          />
+          <FilterComponent
+            filterDay="max"
+            filterText="All"
+            selectedRange={selectedRange}
+          />
         </View>
         <View>
           <ChartPath
