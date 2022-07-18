@@ -57,7 +57,6 @@ const CoinItem = ({ marketCoin }) => {
           alignSelf: "center",
         }}
       />
-      {/* <Text>{rocketChange}</Text> */}
       <View>
         <Text style={styles.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
