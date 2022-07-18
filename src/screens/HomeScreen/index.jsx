@@ -33,26 +33,29 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <Text
-        style={{
-          fontFamily: "BarlowCondensed",
-          color: "white",
-          fontSize: 25,
-          letterSpacing: 1,
-          paddingLeft: 15,
-          paddingBottom: 8,
-        }}
-      >
+      <View style={{ flexDirection: "row" }}>
         <Text
           style={{
             fontSize: "14",
+            paddingTop: 10,
+            paddingLeft: 15,
           }}
         >
           💎
         </Text>
-        {"  "}
-        Crypto Prices
-      </Text>
+        <Text
+          style={{
+            fontFamily: "BarlowCondensed",
+            color: "white",
+            fontSize: 25,
+            letterSpacing: 1,
+            paddingBottom: 8,
+          }}
+        >
+          {"  "}
+          Crypto Prices
+        </Text>
+      </View>
       <FlatList
         data={coins}
         renderItem={({ item }) => <CoinItem marketCoin={item} />}
