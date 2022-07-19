@@ -27,16 +27,16 @@ const CoinItem = ({ marketCoin }) => {
 
   const normalizeMarketCap = (marketCap) => {
     if (marketCap > 1e12) {
-      return `${(marketCap / 1e12).toFixed(3)} T`;
+      return `${(marketCap / 1e12).toFixed(1)} T`;
     }
     if (marketCap > 1e9) {
-      return `${(marketCap / 1e9).toFixed(3)} B`;
+      return `${(marketCap / 1e9).toFixed(1)} B`;
     }
     if (marketCap > 1e6) {
-      return `${(marketCap / 1e6).toFixed(3)} M`;
+      return `${(marketCap / 1e6).toFixed(1)} M`;
     }
     if (marketCap > 1e3) {
-      return `${(marketCap / 1e3).toFixed(3)} K`;
+      return `${(marketCap / 1e3).toFixed(1)} K`;
     }
     return marketCap;
   };

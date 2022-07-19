@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, Pressable } from "react-native";
 
 const FilterComponent = (props) => {
-  const { filterDay, filterText, selectedRange } = props;
+  const { filterDay, filterText, selectedRange, setSelectedRange } = props;
   const isFilterSelected = (filter) => filter === selectedRange;
 
   return (
-    <View
+    <Pressable
       style={{
         paddingHorizontal: 10,
         paddingVertical: 4,
@@ -15,9 +15,12 @@ const FilterComponent = (props) => {
           ? "#1e1e1e"
           : "transparent",
       }}
+      onPress={() => setSelectedRange(filterDay)}
     >
-      <Text style={{ color: "white" }}>{filterText}</Text>
-    </View>
+      <Text style={{ color: isFilterSelected(filterDay) ? "white" : "grey" }}>
+        {filterText}
+      </Text>
+    </Pressable>
   );
 };
 

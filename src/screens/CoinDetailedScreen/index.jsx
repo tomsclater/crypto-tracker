@@ -97,6 +97,10 @@ const CoinDetailedScreen = () => {
     setCoinValue((floatValue / current_price.usd).toString());
   };
 
+  const onSelectedRangeChange = (setSelectedRangeValue) => {
+    setSelectedRange(setSelectedRangeValue);
+  };
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <ChartPathProvider
@@ -141,26 +145,31 @@ const CoinDetailedScreen = () => {
             filterDay="1"
             filterText="24h"
             selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
           />
           <FilterComponent
             filterDay="7"
             filterText="7d"
             selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
           />
           <FilterComponent
             filterDay="30d"
             filterText="30d"
             selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
           />
           <FilterComponent
             filterDay="365"
             filterText="1y"
             selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
           />
           <FilterComponent
             filterDay="max"
             filterText="All"
             selectedRange={selectedRange}
+            setSelectedRange={onSelectedRangeChange}
           />
         </View>
         <View>
