@@ -22,6 +22,14 @@ import {
 } from "../../services/requests";
 import FilterComponent from "./components/CoinDetailedHeader/FilterComponent";
 
+const filterDaysArray = [
+  { filterDay: "1", filterText: "24" },
+  { filterDay: "7", filterText: "7d" },
+  { filterDay: "30", filterText: "30d" },
+  { filterDay: "365", filterText: "1y" },
+  { filterDay: "max", filterText: "All" },
+];
+
 const CoinDetailedScreen = () => {
   const [coin, setCoin] = useState(null);
   const [coinMarketData, setCoinMarketData] = useState(null);
@@ -147,37 +155,16 @@ const CoinDetailedScreen = () => {
             </Text>
           </View>
         </View>
-        <View style={styles.filtersCointainer}>
-          <FilterComponent
-            filterDay="1"
-            filterText="24h"
-            selectedRange={selectedRange}
-            setSelectedRange={onSelectedRangeChange}
-          />
-          <FilterComponent
-            filterDay="7"
-            filterText="7d"
-            selectedRange={selectedRange}
-            setSelectedRange={onSelectedRangeChange}
-          />
-          <FilterComponent
-            filterDay="30d"
-            filterText="30d"
-            selectedRange={selectedRange}
-            setSelectedRange={onSelectedRangeChange}
-          />
-          <FilterComponent
-            filterDay="365"
-            filterText="1y"
-            selectedRange={selectedRange}
-            setSelectedRange={onSelectedRangeChange}
-          />
-          <FilterComponent
-            filterDay="max"
-            filterText="All"
-            selectedRange={selectedRange}
-            setSelectedRange={onSelectedRangeChange}
-          />
+        <View style={styles.filtersContainer}>
+          {filterDaysArray.map((day) => (
+            <FilterComponent
+              filterDay={day.filterDay}
+              filterText={day.filterText}
+              selectedRange={selectedRange}
+              setSelectedRange={onSelectedRangeChange}
+              key={day.filterText}
+            />
+          ))}
         </View>
         <View>
           <ChartPath

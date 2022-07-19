@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "white",
   },
-  filtersCointainer: {
+  filtersContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
     backgroundColor: "#2b2b2b",
