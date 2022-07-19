@@ -4,11 +4,13 @@ import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import PortfolioAssetsItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   allPortfolioAssets,
   allPortfolioBoughtAssetsInStorage,
 } from "../../../../atoms/PortfolioAssets";
+import { SwipeListView } from "react-native-swipe-list-view";
+import { FontAwesome } from "@expo/vector-icons";
 
 // "#ea3943" : "#16c784"
 
@@ -46,12 +48,33 @@ const PortfolioAssetsList = () => {
     );
   };
 
+  const renderDeleteButton = () => {
+    return (
+      <Pressable
+        style={{
+          flex: 1,
+          backgroundColor: "#EA3943",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          paddingRight: 28,
+          marginLeft: 20,
+        }}
+      >
+        <FontAwesome name="trash-o" size={25} color="white" />
+      </Pressable>
+    );
+  };
+
   const isChangePositive = () => getCurrentValueChange() >= 0;
 
   return (
-    <FlatList
+    <SwipeListView
       data={assets}
       renderItem={({ item }) => <PortfolioAssetsItem assetItem={item} />}
+      rightOpenValue={-75}
+      disableRightSwipe
+      closeOnRowPress
+      renderHiddenItem={(data, rowMap) => renderDeleteButton()}
       ListHeaderComponent={
         <>
           <View style={styles.balanceContainer}>

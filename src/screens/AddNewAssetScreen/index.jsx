@@ -72,6 +72,25 @@ const AddNewAssetScreen = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      {/* Extra Add New Asset Button */}
+      <Pressable
+        style={{
+          ...styles.buttonContainer,
+          backgroundColor: isQuantityEntered() ? "#303030" : "#4169E1",
+        }}
+        onPress={onAddNewAsset}
+        disabled={isQuantityEntered()}
+      >
+        <Text
+          style={{
+            ...styles.buttonText,
+            color: isQuantityEntered() ? "grey" : "white",
+          }}
+        >
+          Add New Asset
+        </Text>
+      </Pressable>
+      {/* Extra Add New Asset Button */}
       <SearchableDropDown
         items={allCoins}
         onItemSelect={(item) => setSelectedCoinId(item.id)}
