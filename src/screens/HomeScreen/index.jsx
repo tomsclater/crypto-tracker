@@ -53,7 +53,7 @@ const HomeScreen = () => {
           }}
         >
           {"  "}
-          Crypto Prices
+          Crypto Projections
         </Text>
       </View>
       <FlatList

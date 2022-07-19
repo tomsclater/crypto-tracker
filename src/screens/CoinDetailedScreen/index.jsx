@@ -37,15 +37,22 @@ const CoinDetailedScreen = () => {
   const fetchCoinData = async () => {
     setLoading(true);
     const fetchedCoinData = await getDetailedCoinData(coinId);
-    const fetchedCoinMarketData = await getCoinMarketChart(coinId);
     setCoin(fetchedCoinData);
-    setCoinMarketData(fetchedCoinMarketData);
     setUsdValue(fetchedCoinData.market_data.current_price.usd.toString());
     setLoading(false);
   };
 
+  const fetchMarketCoinData = async (selectedRangeValue) => {
+    const fetchedCoinMarketData = await getCoinMarketChart(
+      coinId,
+      selectedRangeValue
+    );
+    setCoinMarketData(fetchedCoinMarketData);
+  };
+
   useEffect(() => {
     fetchCoinData();
+    fetchMarketCoinData(1);
   }, []);
 
   if (loading || !coin || !coinMarketData) {
@@ -97,8 +104,9 @@ const CoinDetailedScreen = () => {
     setCoinValue((floatValue / current_price.usd).toString());
   };
 
-  const onSelectedRangeChange = (setSelectedRangeValue) => {
-    setSelectedRange(setSelectedRangeValue);
+  const onSelectedRangeChange = (selectedRangeValue) => {
+    setSelectedRange(selectedRangeValue);
+    fetchMarketCoinData(selectedRangeValue);
   };
 
   return (
@@ -106,7 +114,6 @@ const CoinDetailedScreen = () => {
       <ChartPathProvider
         data={{
           points: prices.map(([x, y]) => ({ x, y })),
-          smoothingStrategy: "bezier",
         }}
       >
         <CoinDetailedHeader

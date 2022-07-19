@@ -1,10 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
 import { Text, Pressable } from "react-native";
 
 const FilterComponent = (props) => {
   const { filterDay, filterText, selectedRange, setSelectedRange } = props;
   const isFilterSelected = (filter) => filter === selectedRange;
 
+  console.log("Pressed");
   return (
     <Pressable
       style={{
@@ -24,4 +25,4 @@ const FilterComponent = (props) => {
   );
 };
 
-export default FilterComponent;
+export default memo(FilterComponent);
