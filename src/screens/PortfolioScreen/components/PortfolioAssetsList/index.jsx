@@ -4,19 +4,23 @@ import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import PortfolioAssetsItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import {
   allPortfolioAssets,
   allPortfolioBoughtAssetsInStorage,
 } from "../../../../atoms/PortfolioAssets";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 // "#ea3943" : "#16c784"
 
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
   const assets = useRecoilValue(allPortfolioAssets);
+  const [storageAssets, setStorageAssets] = useRecoilState(
+    allPortfolioBoughtAssetsInStorage
+  );
 
   const getCurrentBalance = () =>
     assets.reduce(
@@ -48,7 +52,14 @@ const PortfolioAssetsList = () => {
     );
   };
 
-  const renderDeleteButton = () => {
+  const onDeleteAsset = async (asset) => {
+    const newAssets = storageAssets.filter((coin) => coin.id !== asset.item.id);
+    const jsonValue = JSON.stringify(newAssets);
+    await AsyncStorage.setItem("@portfolio_coins", jsonValue);
+    setStorageAssets(newAssets);
+  };
+
+  const renderDeleteButton = (data) => {
     return (
       <Pressable
         style={{
@@ -59,6 +70,7 @@ const PortfolioAssetsList = () => {
           paddingRight: 28,
           marginLeft: 20,
         }}
+        onPress={() => onDeleteAsset(data)}
       >
         <FontAwesome name="trash-o" size={25} color="white" />
       </Pressable>
@@ -74,7 +86,8 @@ const PortfolioAssetsList = () => {
       rightOpenValue={-75}
       disableRightSwipe
       closeOnRowPress
-      renderHiddenItem={(data, rowMap) => renderDeleteButton()}
+      keyExtractor={({ id }, index) => `${id}${index}`}
+      renderHiddenItem={(data) => renderDeleteButton(data)}
       ListHeaderComponent={
         <>
           <View style={styles.balanceContainer}>
