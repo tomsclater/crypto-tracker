@@ -9,12 +9,13 @@ import {
 import CoinDetailedHeader from "./components/CoinDetailedHeader";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
-import {
-  ChartDot,
-  ChartPath,
-  ChartPathProvider,
-  ChartYLabel,
-} from "@rainbow-me/animated-charts";
+// import {
+//   ChartDot,
+//   ChartPath,
+//   ChartPathProvider,
+//   ChartYLabel,
+// } from "@rainbow-me/animated-charts";
+import { LineChart } from "react-native-wagmi-charts";
 import { useRoute } from "@react-navigation/native";
 import {
   getDetailedCoinData,
@@ -119,10 +120,8 @@ const CoinDetailedScreen = () => {
 
   return (
     <View style={{ paddingHorizontal: 10 }}>
-      <ChartPathProvider
-        data={{
-          points: prices.map(([x, y]) => ({ x, y })),
-        }}
+      <LineChart.Provider
+        data={prices.map(([timestamp, value]) => ({ timestamp, value }))}
       >
         <CoinDetailedHeader
           coinId={id}
@@ -133,7 +132,7 @@ const CoinDetailedScreen = () => {
         <View style={styles.priceContainer}>
           <View>
             <Text style={styles.name}>{name}</Text>
-            <ChartYLabel format={formatCurrency} style={styles.currentPrice} />
+            {/* <ChartYLabel format={formatCurrency} style={styles.currentPrice} /> */}
           </View>
           <View
             style={{
@@ -166,14 +165,12 @@ const CoinDetailedScreen = () => {
             />
           ))}
         </View>
-        <View>
-          <ChartPath
-            height={screenWidth / 2}
-            stroke={chartColor}
-            width={screenWidth}
-          />
-          <ChartDot style={{ backgroundColor: chartColor }} />
-        </View>
+
+        <LineChart height={screenWidth / 2} width={screenWidth}>
+          <LineChart.Path color={chartColor} />
+          <LineChart.CursorLine color={"white"} />
+        </LineChart>
+
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "row", flex: 1 }}>
             <Text style={{ color: "white", alignSelf: "center" }}>
@@ -198,7 +195,7 @@ const CoinDetailedScreen = () => {
             />
           </View>
         </View>
-      </ChartPathProvider>
+      </LineChart.Provider>
     </View>
   );
 };
