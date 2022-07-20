@@ -22,6 +22,8 @@ import {
   getCoinMarketChart,
 } from "../../services/requests";
 import FilterComponent from "./components/CoinDetailedHeader/FilterComponent";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 const filterDaysArray = [
   { filterDay: "1", filterText: "24" },
@@ -87,7 +89,7 @@ const CoinDetailedScreen = () => {
   const chartColor = current_price.usd > prices[0][1] ? "#16c784" : "#ea3943";
   const screenWidth = Dimensions.get("window").width;
 
-  const formatCurrency = (value) => {
+  const formatCurrency = ({ value }) => {
     "worklet";
     if (value === "") {
       if (current_price.usd < 1) {
@@ -132,7 +134,10 @@ const CoinDetailedScreen = () => {
         <View style={styles.priceContainer}>
           <View>
             <Text style={styles.name}>{name}</Text>
-            {/* <ChartYLabel format={formatCurrency} style={styles.currentPrice} /> */}
+            <LineChart.PriceText
+              format={formatCurrency}
+              style={styles.currentPrice}
+            />
           </View>
           <View
             style={{
@@ -164,6 +169,12 @@ const CoinDetailedScreen = () => {
               key={day.filterText}
             />
           ))}
+          <Ionicons name="bar-chart-outline" size={24} color="#16c784" />
+          <MaterialCommunityIcons
+            name="chart-multiple"
+            size={24}
+            color="#16c784"
+          />
         </View>
 
         <LineChart height={screenWidth / 2} width={screenWidth}>
