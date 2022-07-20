@@ -33,16 +33,13 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <View style={{ flexDirection: "row" }}>
-        <Text
-          style={{
-            fontSize: 14,
-            paddingTop: 10,
-            paddingLeft: 15,
-          }}
-        >
-          💎
-        </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <Text
           style={{
             fontFamily: "BarlowCondensed",
@@ -50,12 +47,28 @@ const HomeScreen = () => {
             fontSize: 25,
             letterSpacing: 1,
             paddingBottom: 8,
+            textDecorationLine: "underline",
+            textDecorationColor: "green",
           }}
         >
           {"  "}
-          Crypto Price Projection
+          Crypto Price Chart
+        </Text>
+
+        <Text
+          style={{
+            color: "white",
+            fontSize: "11",
+            paddingTop: 10,
+            paddingBottom: 8,
+          }}
+        >
+          🦎 {"  "}Powered by Coin Gecko
         </Text>
       </View>
+      <View
+        style={{ flexDirection: "row", justifyContent: "space-between" }}
+      ></View>
       <FlatList
         data={coins}
         renderItem={({ item }) => <CoinItem marketCoin={item} />}
