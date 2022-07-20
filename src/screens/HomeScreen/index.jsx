@@ -38,29 +38,37 @@ const HomeScreen = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          paddingLeft: 20,
+          paddingBottom: 10,
         }}
       >
         <Text
           style={{
+            fontSize: 14,
+            paddingTop: 6,
+          }}
+        >
+          💎
+        </Text>
+        <Text
+          style={{
             fontFamily: "BarlowCondensed",
             color: "white",
-            fontSize: 25,
+            fontSize: 29,
             letterSpacing: 1,
-            paddingBottom: 8,
-            textDecorationLine: "underline",
-            textDecorationColor: "green",
           }}
         >
           {"  "}
-          Crypto Price Chart
+          Crypto Trends {"  "}
         </Text>
 
         <Text
           style={{
-            color: "white",
-            fontSize: "11",
+            color: "lightgrey",
+            fontSize: 10,
             paddingTop: 10,
-            paddingBottom: 8,
+            fontWeight: "200",
+            paddingRight: 50,
           }}
         >
           🦎 {"  "}Powered by Coin Gecko
