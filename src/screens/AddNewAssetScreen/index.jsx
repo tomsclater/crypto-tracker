@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Pressable,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import SearchableDropDown from "react-native-searchable-dropdown";
 import styles from "./styles";
 import { useRecoilState } from "recoil";
@@ -73,9 +80,13 @@ const AddNewAssetScreen = () => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      keyboardVerticalOffset={80}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
       {/* Extra Add New Asset Button */}
-      <Pressable
+      {/* <Pressable
         style={{
           ...styles.buttonContainer,
           backgroundColor: isQuantityEntered() ? "#303030" : "#4169E1",
@@ -91,7 +102,7 @@ const AddNewAssetScreen = () => {
         >
           Add New Asset
         </Text>
-      </Pressable>
+      </Pressable> */}
       {/* Extra Add New Asset Button */}
       <SearchableDropDown
         items={allCoins}
@@ -152,7 +163,7 @@ const AddNewAssetScreen = () => {
           </Pressable>
         </>
       )}
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
