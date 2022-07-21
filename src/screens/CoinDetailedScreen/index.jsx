@@ -15,11 +15,12 @@ import { AntDesign } from "@expo/vector-icons";
 //   ChartPathProvider,
 //   ChartYLabel,
 // } from "@rainbow-me/animated-charts";
-import { LineChart } from "react-native-wagmi-charts";
+import { LineChart, CandlestickChart } from "react-native-wagmi-charts";
 import { useRoute } from "@react-navigation/native";
 import {
   getDetailedCoinData,
   getCoinMarketChart,
+  getCandleChartData,
 } from "../../services/requests";
 import FilterComponent from "./components/CoinDetailedHeader/FilterComponent";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -36,6 +37,7 @@ const filterDaysArray = [
 const CoinDetailedScreen = () => {
   const [coin, setCoin] = useState(null);
   const [coinMarketData, setCoinMarketData] = useState(null);
+  const [coinCandleChartData, setCoinCandleChartData] = useState(null);
   const route = useRoute();
   const {
     params: { coinId },
@@ -61,12 +63,21 @@ const CoinDetailedScreen = () => {
     setCoinMarketData(fetchedCoinMarketData);
   };
 
+  const fetchCandleStickChartData = async (selectedRangeValue) => {
+    const fetchedSelectedCandleChartData = await getCandleChartData(
+      coinId,
+      selectedRangeValue
+    );
+    setCoinCandleChartData(fetchedSelectedCandleChartData);
+  };
+
   useEffect(() => {
     fetchCoinData();
     fetchMarketCoinData(1);
+    fetchCandleStickChartData();
   }, []);
 
-  if (loading || !coin || !coinMarketData) {
+  if (loading || !coin || !coinMarketData || !coinCandleChartData) {
     return <ActivityIndicator size="large" />;
   }
 
@@ -118,8 +129,10 @@ const CoinDetailedScreen = () => {
   const onSelectedRangeChange = (selectedRangeValue) => {
     setSelectedRange(selectedRangeValue);
     fetchMarketCoinData(selectedRangeValue);
+    fetchCandleStickChartData(selectedRangeValue);
   };
 
+  console.log(coinCandleChartData);
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <LineChart.Provider
@@ -181,6 +194,22 @@ const CoinDetailedScreen = () => {
           <LineChart.Path color={chartColor} />
           <LineChart.CursorLine color={"white"} />
         </LineChart>
+
+        <CandlestickChart.Provider
+          data={coinCandleChartData.map(
+            ([timestamp, open, high, low, close]) => ({
+              timestamp,
+              open,
+              high,
+              low,
+              close,
+            })
+          )}
+        >
+          <CandlestickChart>
+            <CandlestickChart.Candles />
+          </CandlestickChart>
+        </CandlestickChart.Provider>
 
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "row", flex: 1 }}>
