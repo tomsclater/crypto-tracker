@@ -1,4 +1,4 @@
 # crypto-tracker
 Built with React native
 
-![app](https://user-images.githubusercontent.com/44801711/179904157-4fbd4168-502e-443f-9a58-739e5a9cc71d.png)
+![Crypto App](https://user-images.githubusercontent.com/44801711/180367267-3419b9eb-9aed-4618-8eb7-2e40fc28380f.png)
