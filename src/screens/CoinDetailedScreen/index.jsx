@@ -206,9 +206,33 @@ const CoinDetailedScreen = () => {
             })
           )}
         >
-          <CandlestickChart>
+          <CandlestickChart height={screenWidth / 2} width={screenWidth}>
             <CandlestickChart.Candles />
+            <CandlestickChart.Crosshair>
+              <CandlestickChart.Tooltip />
+            </CandlestickChart.Crosshair>
           </CandlestickChart>
+          <View style={styles.candleStickDataContainer}>
+            <CandlestickChart.PriceText
+              style={styles.candleStickText}
+              type="open"
+            />
+            <CandlestickChart.PriceText
+              style={styles.candleStickText}
+              type="high"
+            />
+            <CandlestickChart.PriceText
+              style={styles.candleStickText}
+              type="low"
+            />
+            <CandlestickChart.PriceText
+              style={styles.candleStickText}
+              type="close"
+            />
+          </View>
+          <CandlestickChart.DatetimeText
+            style={{ color: "white", fontWeight: "700", margin: 10 }}
+          />
         </CandlestickChart.Provider>
 
         <View style={{ flexDirection: "row" }}>
