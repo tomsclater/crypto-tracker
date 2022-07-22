@@ -46,6 +46,7 @@ const CoinDetailedScreen = () => {
   const [coinValue, setCoinValue] = useState("1");
   const [usdValue, setUsdValue] = useState("");
   const [selectedRange, setSelectedRange] = useState("1");
+  const [isCandleChartVisible, setIsCandleChartVisible] = useState(false);
 
   const fetchCoinData = async () => {
     setLoading(true);
@@ -182,58 +183,69 @@ const CoinDetailedScreen = () => {
               key={day.filterText}
             />
           ))}
-          <Ionicons name="bar-chart-outline" size={24} color="#16c784" />
-          <MaterialCommunityIcons
-            name="chart-multiple"
-            size={24}
-            color="#16c784"
-          />
+          {isCandleChartVisible ? (
+            <Ionicons
+              name="bar-chart-outline"
+              size={24}
+              color="#16c784"
+              onPress={() => setIsCandleChartVisible(false)}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name="chart-multiple"
+              size={24}
+              color="#16c784"
+              onPress={() => setIsCandleChartVisible(true)}
+            />
+          )}
         </View>
 
-        <LineChart height={screenWidth / 2} width={screenWidth}>
-          <LineChart.Path color={chartColor} />
-          <LineChart.CursorLine color={"white"} />
-        </LineChart>
-
-        <CandlestickChart.Provider
-          data={coinCandleChartData.map(
-            ([timestamp, open, high, low, close]) => ({
-              timestamp,
-              open,
-              high,
-              low,
-              close,
-            })
-          )}
-        >
-          <CandlestickChart height={screenWidth / 2} width={screenWidth}>
-            <CandlestickChart.Candles />
-            <CandlestickChart.Crosshair>
-              <CandlestickChart.Tooltip />
-            </CandlestickChart.Crosshair>
-          </CandlestickChart>
-          <View style={styles.candleStickDataContainer}>
-            <CandlestickChart.PriceText
-              style={styles.candleStickText}
-              type="open"
+        {isCandleChartVisible ? (
+          <CandlestickChart.Provider
+            data={coinCandleChartData.map(
+              ([timestamp, open, high, low, close]) => ({
+                timestamp,
+                open,
+                high,
+                low,
+                close,
+              })
+            )}
+          >
+            <CandlestickChart height={screenWidth / 2} width={screenWidth}>
+              <CandlestickChart.Candles />
+              <CandlestickChart.Crosshair>
+                <CandlestickChart.Tooltip />
+              </CandlestickChart.Crosshair>
+            </CandlestickChart>
+            <View style={styles.candleStickDataContainer}>
+              <CandlestickChart.PriceText
+                style={styles.candleStickText}
+                type="open"
+              />
+              <CandlestickChart.PriceText
+                style={styles.candleStickText}
+                type="high"
+              />
+              <CandlestickChart.PriceText
+                style={styles.candleStickText}
+                type="low"
+              />
+              <CandlestickChart.PriceText
+                style={styles.candleStickText}
+                type="close"
+              />
+            </View>
+            <CandlestickChart.DatetimeText
+              style={{ color: "white", fontWeight: "700", margin: 10 }}
             />
-            <CandlestickChart.PriceText
-              style={styles.candleStickText}
-              type="high"
-            />
-            <CandlestickChart.PriceText
-              style={styles.candleStickText}
-              type="low"
-            />
-            <CandlestickChart.PriceText
-              style={styles.candleStickText}
-              type="close"
-            />
-          </View>
-          <CandlestickChart.DatetimeText
-            style={{ color: "white", fontWeight: "700", margin: 10 }}
-          />
-        </CandlestickChart.Provider>
+          </CandlestickChart.Provider>
+        ) : (
+          <LineChart height={screenWidth / 2} width={screenWidth}>
+            <LineChart.Path color={chartColor} />
+            <LineChart.CursorLine color={"white"} />
+          </LineChart>
+        )}
 
         <View style={{ flexDirection: "row" }}>
           <View style={{ flexDirection: "row", flex: 1 }}>
