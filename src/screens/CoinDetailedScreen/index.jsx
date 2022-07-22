@@ -78,6 +78,17 @@ const CoinDetailedScreen = () => {
     fetchCandleStickChartData();
   }, []);
 
+  const onSelectedRangeChange = (selectedRangeValue) => {
+    setSelectedRange(selectedRangeValue);
+    fetchMarketCoinData(selectedRangeValue);
+    fetchCandleStickChartData(selectedRangeValue);
+  };
+
+  const memoOnSelectedRangeChange = React.useCallback(
+    (range) => onSelectedRangeChange(range),
+    []
+  );
+
   if (loading || !coin || !coinMarketData || !coinCandleChartData) {
     return <ActivityIndicator size="large" />;
   }
@@ -127,12 +138,6 @@ const CoinDetailedScreen = () => {
     setCoinValue((floatValue / current_price.usd).toString());
   };
 
-  const onSelectedRangeChange = (selectedRangeValue) => {
-    setSelectedRange(selectedRangeValue);
-    fetchMarketCoinData(selectedRangeValue);
-    fetchCandleStickChartData(selectedRangeValue);
-  };
-
   console.log(coinCandleChartData);
   return (
     <View style={{ paddingHorizontal: 10 }}>
@@ -179,7 +184,7 @@ const CoinDetailedScreen = () => {
               filterDay={day.filterDay}
               filterText={day.filterText}
               selectedRange={selectedRange}
-              setSelectedRange={onSelectedRangeChange}
+              setSelectedRange={memoOnSelectedRangeChange}
               key={day.filterText}
             />
           ))}
@@ -219,22 +224,34 @@ const CoinDetailedScreen = () => {
               </CandlestickChart.Crosshair>
             </CandlestickChart>
             <View style={styles.candleStickDataContainer}>
-              <CandlestickChart.PriceText
-                style={styles.candleStickText}
-                type="open"
-              />
-              <CandlestickChart.PriceText
-                style={styles.candleStickText}
-                type="high"
-              />
-              <CandlestickChart.PriceText
-                style={styles.candleStickText}
-                type="low"
-              />
-              <CandlestickChart.PriceText
-                style={styles.candleStickText}
-                type="close"
-              />
+              <View>
+                <Text style={styles.candleStickTextLabel}>Open</Text>
+                <CandlestickChart.PriceText
+                  style={styles.candleStickText}
+                  type="open"
+                />
+              </View>
+              <View>
+                <Text style={styles.candleStickTextLabel}>High</Text>
+                <CandlestickChart.PriceText
+                  style={styles.candleStickText}
+                  type="high"
+                />
+              </View>
+              <View>
+                <Text style={styles.candleStickTextLabel}>Low</Text>
+                <CandlestickChart.PriceText
+                  style={styles.candleStickText}
+                  type="low"
+                />
+              </View>
+              <View>
+                <Text style={styles.candleStickTextLabel}>Close</Text>
+                <CandlestickChart.PriceText
+                  style={styles.candleStickText}
+                  type="close"
+                />
+              </View>
             </View>
             <CandlestickChart.DatetimeText
               style={{ color: "white", fontWeight: "700", margin: 10 }}
